@@ -1,10 +1,23 @@
 :root {
-    --main-bg-color: #121212;
-    --main-font-color: #bababa;
+    --bs-body-bg: #121212 !important;
+    --bs-body-color: #bababa !important;
     --grey: #303030;
+    --blue: #00a6f5;
+    --blue-light: #67c7f5;
 }
 
-html, body {
-    background-color: var(--main-bg-color);
-    color: var(--main-font-color);
+.grey {
+    color: var(--grey);
+}
+
+.grey-bg {
+    background-color: var(--grey);
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.blue-bg {
+    background-color: var(--blue);
 }
