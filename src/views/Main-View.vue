@@ -1,6 +1,5 @@
-
 <template>
-  <date-picker />
+  <date-picker @on-date-change="onDateChange($event)" />
   <div class="col-12">Main window</div>
 </template>
 
@@ -13,7 +12,11 @@ export default {
     DatePicker,
   },
   setup() {
-    return {};
+    const onDateChange = (date) => console.log("Current date: ", date);
+
+    return {
+      onDateChange,
+    };
   },
 };
 </script>
