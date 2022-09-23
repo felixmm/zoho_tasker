@@ -1,26 +1,23 @@
 <template>
-  <div class="row">
+  <div class="row font-22 py-3 my-3 border">
     <div class="col-2">
-      {{ props.task.dateKey }}
+      {{ props.item.usId }}
     </div>
     <div class="col-2">
-      {{ props.task.usId }}
+      {{ props.item.taskId }}
     </div>
-    <div class="col-2">
-      {{ props.task.taskId }}
+    <div class="col-6">
+      {{ props.item.title }}
     </div>
-    <div class="col-2">
-      {{ props.task.title }}
-    </div>
-    <div class="col-2">
-      {{ props.task.time }}
+    <div class="col-2 text-center">
+      {{ props.item.time }}
     </div>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  task: {
+  item: {
     type: Object,
     default: () => ({
       dateKey: "",

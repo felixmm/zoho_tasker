@@ -2,7 +2,7 @@
   <div>
     <date-picker @on-date-change="onDateChange($event)" />
     <div v-for="task in tasks" :key="task.taskId">
-      <task :task="task" />
+      <task :item="task" />
     </div>
   </div>
 </template>

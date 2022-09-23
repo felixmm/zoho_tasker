@@ -21,3 +21,23 @@
 .blue-bg {
     background-color: var(--blue);
 }
+
+.font-26 {
+    font-size: 26px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-22 {
+    font-size: 22px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-18 {
+    font-size: 18px;
+}

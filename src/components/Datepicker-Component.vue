@@ -5,7 +5,7 @@
         <i class="fa-solid fa-angles-left datepicker-icon" />
       </a>
     </div>
-    <div class="col-8 text-center p-4 border">
+    <div class="col-8 text-center p-4 font-26 border">
       {{ formatedDate }}
     </div>
     <div class="col-2 text-center p-4 border blue">
