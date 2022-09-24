@@ -4,14 +4,17 @@
     <div v-for="task in tasks" :key="task.taskId">
       <task :item="task" />
     </div>
+    <button @click="getStory">Try and get a story QQ</button>
   </div>
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import moment from "moment";
 import DatePicker from "@/components/Datepicker-Component.vue";
 import Task from "@/components/Task-Component.vue";
+
+import { setUserStory, getUserStory } from "@/data/storeManager";
 
 export default {
   name: "MainView",
@@ -41,10 +44,28 @@ export default {
       },
     ]);
 
+    const getStory = () => {
+      const story = getUserStory(dateKey);
+      console.log("From db then? ", story);
+    };
+
+    onMounted(() => {
+      const userStory = {
+        dateKey: dateKey.value,
+        us: 123,
+        task: 1123,
+        title: "came from db?",
+        time: 1,
+      };
+      console.log("trying to save this ", userStory);
+      setUserStory(userStory);
+    });
+
     return {
       onDateChange,
       dateKey,
       tasks,
+      getStory,
     };
   },
 };
