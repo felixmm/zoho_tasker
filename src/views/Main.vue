@@ -2,6 +2,7 @@
   <div>
     <date-picker @on-date-change="onDateChange($event)" />
     <task-item v-for="task in workDay.tasks" :key="task.task" :item="task" />
+    <add-task-item />
   </div>
 </template>
 
@@ -10,6 +11,7 @@ import { ref, computed, onMounted } from "vue";
 import moment from "moment";
 import DatePicker from "@/components/DatePicker.vue";
 import TaskItem from "@/components/TaskItem.vue";
+import AddTaskItem from "@/components/AddTaskItem.vue";
 
 import { getWorkDay, setWorkDay, dateKeyExists } from "@/data/storeManager";
 
@@ -18,6 +20,7 @@ export default {
   components: {
     DatePicker,
     TaskItem,
+    AddTaskItem,
   },
   setup() {
     const workDay = ref({
