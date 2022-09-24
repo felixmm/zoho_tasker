@@ -1,10 +1,10 @@
 <template>
   <div class="row font-22 py-3 my-3 border">
     <div class="col-2">
-      {{ props.item.usId }}
+      {{ props.item.us }}
     </div>
     <div class="col-2">
-      {{ props.item.taskId }}
+      {{ props.item.task }}
     </div>
     <div class="col-6">
       {{ props.item.title }}
@@ -20,9 +20,8 @@ const props = defineProps({
   item: {
     type: Object,
     default: () => ({
-      dateKey: "",
-      usId: 0,
-      taskId: 0,
+      us: 0,
+      task: 0,
       title: "",
       time: 0,
     }),

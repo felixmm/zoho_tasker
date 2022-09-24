@@ -2,6 +2,8 @@ import Store from "electron-store";
 
 const _store = new Store();
 
-export const setUserStory = (userStory) => _store.set(userStory.dateKey, userStory);
+export const getWorkDay = (dateKey) => _store.get(dateKey);
 
-export const getUserStory = (dateKey) => _store.get(dateKey);
+export const setWorkDay = (workDay) => _store.set(workDay.dateKey, workDay);
+
+export const dateKeyExists = (dateKey) => _store.has(dateKey);
