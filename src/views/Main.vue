@@ -2,7 +2,8 @@
   <div>
     <date-picker @on-date-change="onDateChange($event)" />
     <task-item v-for="task in workDay.tasks" :key="task.task" :item="task" />
-    <add-task-item />
+    <add-task-item @on-save="save($event)" />
+    <button @click="clear()">Clear All</button>
   </div>
 </template>
 
@@ -13,7 +14,13 @@ import DatePicker from "@/components/DatePicker.vue";
 import TaskItem from "@/components/TaskItem.vue";
 import AddTaskItem from "@/components/AddTaskItem.vue";
 
-import { getWorkDay, setWorkDay, dateKeyExists } from "@/data/storeManager";
+import {
+  getWorkDay,
+  setWorkDay,
+  dateKeyExists,
+  saveTask,
+  clearAll,
+} from "@/data/storeManager";
 
 export default {
   name: "MainView",
@@ -49,11 +56,25 @@ export default {
       checkWorkDay();
     };
 
+    // Tasks
+    function save(input) {
+      saveTask(dateKey.value, input);
+      this.model;
+      checkWorkDay();
+    }
+
+    function clear() {
+      clearAll();
+      checkWorkDay();
+    }
+
     onMounted(() => checkWorkDay());
 
     return {
       onDateChange,
       workDay,
+      save,
+      clear,
     };
   },
 };
