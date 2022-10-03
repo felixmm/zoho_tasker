@@ -8,6 +8,15 @@
     --green-dark: #408049;
     --red: #dc3545;
     --red-dark: #8a1924;
+    --white: #ffffff;
+}
+
+html, body, #app {
+    height: 100%;
+}
+
+.white {
+    color: var(--white);
 }
 
 .grey {
@@ -79,9 +88,19 @@
 }
 
 .arrow-btn, .arrow-btn:visited {
-    color: var(--blue);
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 26px;
 }
 
 .arrow-btn:hover {
-    color: var(--blue-light);
+    background-color: var(--blue-light);
+}
+
+.action-btn, .action-btn:visited {
+    color: var(--white);
+}
+
+.action-btn:hover {
+    color: var(--grey);
 }

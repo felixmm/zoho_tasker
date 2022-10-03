@@ -1,16 +1,16 @@
 <template>
   <div class="row">
-    <div class="col-2 text-center p-4 border blue">
+    <div class="col-2 text-center p-4">
       <button type="button" class="btn" @click="prevDay">
-        <i class="fa-solid fa-angles-left arrow-btn font-40" />
+        <i class="fa-solid fa-angles-left py-2 px-4 arrow-btn font-40" />
       </button>
     </div>
-    <div class="col-8 text-center p-4 font-26 border">
+    <div class="col-8 text-center my-auto font-40">
       {{ formatedDate }}
     </div>
-    <div class="col-2 text-center p-4 border blue">
+    <div class="col-2 text-center p-4">
       <button type="button" class="btn" @click="nextDay">
-        <i class="fa-solid fa-angles-right arrow-btn font-40" />
+        <i class="fa-solid fa-angles-right py-2 px-4 arrow-btn font-40" />
       </button>
     </div>
   </div>
@@ -23,7 +23,7 @@ import moment from "moment";
 const emit = defineEmits(["on-date-change"]);
 
 const date = ref(new Date());
-const formatedDate = computed(() => moment(date.value).format("DD-MMM-YYYY"));
+const formatedDate = computed(() => moment(date.value).format("DD MMM, YYYY"));
 
 const prevDay = () => {
   date.value = moment(date.value).subtract(1, "days").toDate();

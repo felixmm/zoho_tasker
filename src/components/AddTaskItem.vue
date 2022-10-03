@@ -60,12 +60,12 @@ const model = ref({
 });
 
 function onSave() {
-  model.value = { ...initModel };
   emit("on-save", model.value);
+  model.value = { ...initModel };
 }
 
 function onCancel() {
-  model.value = { ...initModel };
   emit("on-cancel");
+  model.value = { ...initModel };
 }
 </script>

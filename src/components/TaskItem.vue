@@ -1,19 +1,19 @@
 <template>
-  <div class="row font-22 py-3 my-3 border">
-    <div class="col-2 text-center">
+  <div class="row font-22 border-bottom">
+    <div class="col-2 text-center py-2 border-right">
       {{ props.item.us }}
     </div>
-    <div class="col-2 text-center">
+    <div class="col-2 text-center py-2 border-right">
       {{ props.item.task }}
     </div>
-    <div class="col-5">
+    <div class="col-5 py-2 border-right">
       {{ props.item.title }}
     </div>
-    <div class="col-2 text-center">
+    <div class="col-2 text-center py-2 border-right">
       {{ props.item.time }}
     </div>
-    <div class="col-1 text-center">
-      <button type="button" class="btn">
+    <div class="col-1 py-2 text-center">
+      <button type="button" class="btn" @click="onDelete()">
         <i class="fa-solid fa-circle-xmark del-btn font-30" />
       </button>
     </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["on-delete"]);
 const props = defineProps({
   item: {
     type: Object,
@@ -32,4 +33,14 @@ const props = defineProps({
     }),
   },
 });
+
+function onDelete() {
+  emit("on-delete", props.item);
+}
 </script>
+
+<style scoped>
+.border-right {
+  border-right: 2px solid;
+}
+</style>
