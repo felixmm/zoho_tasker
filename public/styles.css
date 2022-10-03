@@ -9,6 +9,8 @@
     --red: #dc3545;
     --red-dark: #8a1924;
     --white: #ffffff;
+    --blue-us: #009ccc;
+    --yellow-us: #f2cb1d;
 }
 
 html, body, #app {
@@ -33,6 +35,14 @@ html, body, #app {
 
 .blue-bg {
     background-color: var(--blue);
+}
+
+.blue-us {
+    color: var(--blue-us);
+}
+
+.yellow-us {
+    color: var(--yellow-us);
 }
 
 .green {

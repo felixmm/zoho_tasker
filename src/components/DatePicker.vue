@@ -5,8 +5,8 @@
         <i class="fa-solid fa-angles-left py-2 px-4 arrow-btn font-40" />
       </button>
     </div>
-    <div class="col-8 text-center my-auto font-40">
-      {{ formatedDate }}
+    <div class="col-8 text-center my-auto">
+      <span class="white font-40">{{ formatedDate }}</span>
     </div>
     <div class="col-2 text-center p-4">
       <button type="button" class="btn" @click="nextDay">

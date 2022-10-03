@@ -17,7 +17,10 @@
             <label>Title</label>
           </div>
           <div class="col-2">
-            <label>Time</label>
+            <label>
+              Time
+              <span class="fw-normal">({{ totalTime }}h)</span>
+            </label>
           </div>
         </div>
         <task-item
@@ -81,7 +84,7 @@ export default {
       tasks: [],
     });
 
-    // Date logic
+    // Date
     const checkWorkDay = () => {
       const keyExists = dateKeyExists(dateKey.value);
       if (!keyExists) {
@@ -102,7 +105,12 @@ export default {
       checkWorkDay();
     };
 
-    // Add Tasks
+    // Time
+    const totalTime = computed(() =>
+      workDay.value.tasks.reduce((total, item) => total + item.time, 0)
+    );
+
+    // Tasks
     const viewAddTask = ref(false);
 
     function showAddTask() {
@@ -143,6 +151,7 @@ export default {
     return {
       onDateChange,
       workDay,
+      totalTime,
       viewAddTask,
       showAddTask,
       hideAddTask,
