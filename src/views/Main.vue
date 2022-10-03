@@ -43,7 +43,7 @@
       </div>
       <!-- Dev buttons End-->
 
-      <div v-if="!viewAddTask" class="add-task-btn text-end">
+      <div v-if="!viewAddTask" class="position-fixed bottom-0 end-0 text-end">
         <button type="button" class="btn" @click="showAddTask()">
           <i class="fa-solid fa-circle-plus font-50 plus-btn" />
         </button>
@@ -171,8 +171,5 @@ export default {
   bottom: 15px;
   left: 0;
   z-index: 1030;
-}
-.border-right {
-  border-right: 1px solid;
 }
 </style>

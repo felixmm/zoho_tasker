@@ -40,7 +40,4 @@ function onDelete() {
 </script>
 
 <style scoped>
-.border-right {
-  border-right: 2px solid;
-}
 </style>

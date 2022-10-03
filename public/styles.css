@@ -114,3 +114,7 @@ html, body, #app {
 .action-btn:hover {
     color: var(--grey);
 }
+
+.border-right {
+    border-right: 1px solid;
+}
