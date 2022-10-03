@@ -16,3 +16,5 @@ export const saveTask = (dateKey, task) => {
 };
 
 export const clearAll = () => _store.clear();
+
+export const getAll = () => _store.get();

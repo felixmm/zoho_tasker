@@ -13,7 +13,7 @@
           type="number"
         />
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <label>Title</label>
         <input
           v-model="model.title"
@@ -29,10 +29,16 @@
           type="number"
         />
       </div>
-    </div>
-    <div class="row algin-content-end">
-      <button class="col-2">Cancel</button>
-      <button class="col-2" @click="onSave()">Ok</button>
+      <div class="col-1">
+        <div class="row">
+          <button type="button" class="col-12 btn" @click="onSave()">
+            <i class="fa-solid fa-circle-plus plus-btn font-26" />
+          </button>
+          <button type="button" class="col-12 btn">
+            <i class="fa-solid fa-circle-xmark del-btn font-26" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

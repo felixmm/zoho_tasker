@@ -13,7 +13,9 @@
       {{ props.item.time }}
     </div>
     <div class="col-1 text-center">
-      <i class="fa-solid fa-circle-xmark" />
+      <button type="button" class="btn">
+        <i class="fa-solid fa-circle-xmark del-btn font-30" />
+      </button>
     </div>
   </div>
 </template>

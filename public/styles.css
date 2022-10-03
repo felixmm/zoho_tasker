@@ -4,6 +4,10 @@
     --grey: #303030;
     --blue: #00a6f5;
     --blue-light: #67c7f5;
+    --green: #74cb80;
+    --green-dark: #408049;
+    --red: #dc3545;
+    --red-dark: #8a1924;
 }
 
 .grey {
@@ -20,6 +24,22 @@
 
 .blue-bg {
     background-color: var(--blue);
+}
+
+.green {
+    color: var(--green);
+}
+
+.font-50 {
+    font-size: 50px;
+}
+
+.font-40 {
+    font-size: 40px;
+}
+
+.font-30 {
+    font-size: 30px;
 }
 
 .font-26 {
@@ -40,4 +60,20 @@
 
 .font-18 {
     font-size: 18px;
+}
+
+.plus-btn, .plus-btn:visited {
+    color: var(--green);
+}
+
+.plus-btn:hover {
+    color: var(--green-dark);
+}
+
+.del-btn, .del-btn:visited {
+    color: var(--red);
+}
+
+.del-btn:hover {
+    color: var(--red-dark);
 }

@@ -4,6 +4,12 @@
     <task-item v-for="task in workDay.tasks" :key="task.task" :item="task" />
     <add-task-item @on-save="save($event)" />
     <button @click="clear()">Clear All</button>
+    <button @click="viewAll()">View All</button>
+    <div class="add-task-btn text-end">
+      <button type="button" class="btn">
+        <i class="fa-solid fa-circle-plus font-50 plus-btn" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -20,6 +26,7 @@ import {
   dateKeyExists,
   saveTask,
   clearAll,
+  getAll,
 } from "@/data/storeManager";
 
 export default {
@@ -50,7 +57,7 @@ export default {
     };
 
     const date = ref(new Date());
-    const dateKey = computed(() => moment(date.value).format("YYYYmmDD"));
+    const dateKey = computed(() => moment(date.value).format("YYYYMMDD"));
     const onDateChange = (d) => {
       date.value = d;
       checkWorkDay();
@@ -68,6 +75,11 @@ export default {
       checkWorkDay();
     }
 
+    function viewAll() {
+      const allTasks = getAll();
+      console.log("All Workdays and tasks: ", allTasks);
+    }
+
     onMounted(() => checkWorkDay());
 
     return {
@@ -75,9 +87,18 @@ export default {
       workDay,
       save,
       clear,
+      viewAll,
     };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.add-task-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 15px;
+  left: 0;
+  z-index: 1030;
+}
+</style>
