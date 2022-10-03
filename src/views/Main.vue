@@ -2,11 +2,21 @@
   <div>
     <date-picker @on-date-change="onDateChange($event)" />
     <task-item v-for="task in workDay.tasks" :key="task.task" :item="task" />
-    <add-task-item @on-save="save($event)" />
-    <button @click="clear()">Clear All</button>
-    <button @click="viewAll()">View All</button>
+    <add-task-item
+      v-if="viewAddTask"
+      @on-save="save($event)"
+      @on-cancel="hideAddTask()"
+    />
+
+    <!-- Dev buttons -->
+    <div class="fixed-bottom">
+      <button @click="clear()">Clear All</button>
+      <button @click="viewAll()">View All</button>
+    </div>
+    <!-- Dev buttons End-->
+
     <div class="add-task-btn text-end">
-      <button type="button" class="btn">
+      <button type="button" class="btn" @click="showAddTask()">
         <i class="fa-solid fa-circle-plus font-50 plus-btn" />
       </button>
     </div>
@@ -63,12 +73,24 @@ export default {
       checkWorkDay();
     };
 
-    // Tasks
+    // Add Tasks
+    const viewAddTask = ref(false);
+
+    function showAddTask() {
+      viewAddTask.value = true;
+    }
+
+    function hideAddTask() {
+      viewAddTask.value = false;
+    }
+
     function save(input) {
       saveTask(dateKey.value, input);
       this.model;
       checkWorkDay();
     }
+
+    /********** For development **************/
 
     function clear() {
       clearAll();
@@ -85,6 +107,9 @@ export default {
     return {
       onDateChange,
       workDay,
+      viewAddTask,
+      showAddTask,
+      hideAddTask,
       save,
       clear,
       viewAll,

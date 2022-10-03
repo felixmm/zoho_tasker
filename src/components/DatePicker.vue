@@ -1,17 +1,17 @@
 <template>
   <div class="row">
     <div class="col-2 text-center p-4 border blue">
-      <a href="#" @click="prevDay">
-        <i class="fa-solid fa-angles-left datepicker-icon" />
-      </a>
+      <button type="button" class="btn" @click="prevDay">
+        <i class="fa-solid fa-angles-left arrow-btn font-40" />
+      </button>
     </div>
     <div class="col-8 text-center p-4 font-26 border">
       {{ formatedDate }}
     </div>
     <div class="col-2 text-center p-4 border blue">
-      <a href="#" @click="nextDay">
-        <i class="fa-solid fa-angles-right datepicker-icon" />
-      </a>
+      <button type="button" class="btn" @click="nextDay">
+        <i class="fa-solid fa-angles-right arrow-btn font-40" />
+      </button>
     </div>
   </div>
 </template>
@@ -37,15 +37,4 @@ const nextDay = () => {
 </script>
 
 <style scoped>
-.datepicker-icon {
-  font-size: 40px;
-}
-
-.datepicker-icon:hover {
-  cursor: pointer;
-}
-
-.datepicker-icon:active {
-  color: var(--blue-light);
-}
 </style>

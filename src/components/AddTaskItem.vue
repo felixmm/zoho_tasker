@@ -34,7 +34,7 @@
           <button type="button" class="col-12 btn" @click="onSave()">
             <i class="fa-solid fa-circle-plus plus-btn font-26" />
           </button>
-          <button type="button" class="col-12 btn">
+          <button type="button" class="col-12 btn" @click="onCancel()">
             <i class="fa-solid fa-circle-xmark del-btn font-26" />
           </button>
         </div>
@@ -58,8 +58,14 @@ const initModel = {
 const model = ref({
   ...initModel,
 });
+
 function onSave() {
-  emit("on-save", model.value);
   model.value = { ...initModel };
+  emit("on-save", model.value);
+}
+
+function onCancel() {
+  model.value = { ...initModel };
+  emit("on-cancel");
 }
 </script>

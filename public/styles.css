@@ -77,3 +77,11 @@
 .del-btn:hover {
     color: var(--red-dark);
 }
+
+.arrow-btn, .arrow-btn:visited {
+    color: var(--blue);
+}
+
+.arrow-btn:hover {
+    color: var(--blue-light);
+}
