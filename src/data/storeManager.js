@@ -18,7 +18,7 @@ export const saveTask = (dateKey, task) => {
 export const deleteTask = (dateKey, task) => {
     const workDay = _store.get(dateKey);
 
-    workDay.tasks = workDay.tasks.filter(x => x.us != task.us);
+    workDay.tasks = workDay.tasks.filter(x => x.task != task.task);
     _store.set(workDay.dateKey, workDay);
 }
 

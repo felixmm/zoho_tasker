@@ -45,7 +45,7 @@
 
       <div v-if="!viewAddTask" class="position-fixed bottom-0 end-0 text-end">
         <button type="button" class="btn" @click="showAddTask()">
-          <i class="fa-solid fa-circle-plus font-50 plus-btn" />
+          <i class="fa-solid fa-circle-plus font-50 p-3 plus-btn" />
         </button>
       </div>
     </div>
