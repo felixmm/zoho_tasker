@@ -1,8 +1,45 @@
 <template>
   <div class="row h-100">
     <div class="col-1 border-right">
-      <action-menu />
+      <action-menu @on-zoho-text="showModal" @on-pr-text="showModal" />
     </div>
+    <vue-final-modal
+      v-model="viewModal"
+      class="w-75 h-75 m-auto"
+      :click-to-close="false"
+    >
+      <div class="text-end">
+        <button type="button" class="btn" @click="viewModal = false">
+          <i class="fa-solid fa-circle-xmark del-btn font-26" />
+        </button>
+      </div>
+      <div class="px-4">
+        <div class="p-3 modal-text">
+          Sesión de trabajo realizando la programación necesaria para cumplir
+          con el requerimiento asignado ejecutando las tareas US
+          <br />
+          ###Related Issues<br />
+          US<br />
+          TASK1<br />
+          TASK2<br />
+          <br />
+          ###Types of change<br />
+          [ ] Bug fix (non-breaking change which fixes an issue)<br />
+          [X] New feature (non-breaking change which adds functionality)<br />
+          [ ] Breaking change (fix or feature that would cause existing
+          functionality to change)<br />
+          <br />
+          ###Checklist<br />
+          [X] My code follows the code style of this project.<br />
+          [ ] My change requires a change to the documentation.<br />
+          [ ] I have updated the documentation accordingly.<br />
+          [ ] I have read the CONTRIBUTING document
+          (https://cdevteam.netlify.app/).<br />
+          [ ] I have added tests to cover my changes.<br />
+          [ ] All new and existing tests passed.<br />
+        </div>
+      </div>
+    </vue-final-modal>
     <div class="col-11">
       <date-picker @on-date-change="onDateChange($event)" />
       <div>
@@ -132,6 +169,12 @@ export default {
       checkWorkDay();
     }
 
+    // Modal
+    const viewModal = ref(false);
+    function showModal() {
+      viewModal.value = true;
+    }
+
     /********** For development **********/
 
     function clear() {
@@ -159,6 +202,8 @@ export default {
       deleteItem,
       clear,
       viewAll,
+      viewModal,
+      showModal,
     };
   },
 };
@@ -171,5 +216,9 @@ export default {
   bottom: 15px;
   left: 0;
   z-index: 1030;
+}
+
+.modal-text {
+  background-color: var(--bs-body-bg);
 }
 </style>

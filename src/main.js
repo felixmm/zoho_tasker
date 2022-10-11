@@ -6,6 +6,8 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
+import { vfmPlugin } from 'vue-final-modal';
+
 const app = createApp(App);
 
 // Router
@@ -14,6 +16,8 @@ const router = createRouter({
   routes,
 });
 app.use(router);
+
+app.use(vfmPlugin);
 
 // Mount the app
 app.mount("#app");
