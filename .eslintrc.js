@@ -26,6 +26,8 @@ module.exports = {
     },
     "svg": "always",
     "math": "always"
-  }]
+    }],
+    "vue/no-v-html": "off",
+    "vue/html-self-closing": "off"
   },
 };

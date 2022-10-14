@@ -27,10 +27,33 @@
 const emit = defineEmits(["on-zoho-text", "on-pr-text"]);
 
 function onZohoText() {
-  emit("on-zoho-text");
+  const text = `PR Text?`;
+  emit("on-zoho-text", text);
 }
 
 function onPrText() {
-  emit("on-pr-text");
+  const text = `Sesión de trabajo realizando la programación necesaria para cumplir
+  con el requerimiento asignado ejecutando las tareas US
+  <br />
+  ###Related Issues<br />
+  US<br />
+  TASK1<br />
+  TASK2<br />
+  <br />
+  ###Types of change<br />
+  [ ] Bug fix (non-breaking change which fixes an issue)<br />
+  [X] New feature (non-breaking change which adds functionality)<br />
+  [ ] Breaking change (fix or feature that would cause existing
+  functionality to change)<br />
+  <br />
+  ###Checklist<br />
+  [X] My code follows the code style of this project.<br />
+  [ ] My change requires a change to the documentation.<br />
+  [ ] I have updated the documentation accordingly.<br />
+  [ ] I have read the CONTRIBUTING document
+  (https://cdevteam.netlify.app/).<br />
+  [ ] I have added tests to cover my changes.<br />
+  [ ] All new and existing tests passed.<br />`;
+  emit("on-pr-text", text);
 }
 </script>

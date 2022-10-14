@@ -9,35 +9,12 @@
       :click-to-close="false"
     >
       <div class="text-end">
-        <button type="button" class="btn" @click="viewModal = false">
+        <button type="button" class="btn" @click="closeModal">
           <i class="fa-solid fa-circle-xmark del-btn font-26" />
         </button>
       </div>
       <div class="px-4">
-        <div class="p-3 modal-text">
-          Sesión de trabajo realizando la programación necesaria para cumplir
-          con el requerimiento asignado ejecutando las tareas US
-          <br />
-          ###Related Issues<br />
-          US<br />
-          TASK1<br />
-          TASK2<br />
-          <br />
-          ###Types of change<br />
-          [ ] Bug fix (non-breaking change which fixes an issue)<br />
-          [X] New feature (non-breaking change which adds functionality)<br />
-          [ ] Breaking change (fix or feature that would cause existing
-          functionality to change)<br />
-          <br />
-          ###Checklist<br />
-          [X] My code follows the code style of this project.<br />
-          [ ] My change requires a change to the documentation.<br />
-          [ ] I have updated the documentation accordingly.<br />
-          [ ] I have read the CONTRIBUTING document
-          (https://cdevteam.netlify.app/).<br />
-          [ ] I have added tests to cover my changes.<br />
-          [ ] All new and existing tests passed.<br />
-        </div>
+        <div class="p-3 modal-text" v-html="text"></div>
       </div>
     </vue-final-modal>
     <div class="col-11">
@@ -171,8 +148,16 @@ export default {
 
     // Modal
     const viewModal = ref(false);
-    function showModal() {
+    const text = ref("");
+
+    function showModal(value) {
+      text.value = value;
       viewModal.value = true;
+    }
+
+    function closeModal() {
+      text.value = "";
+      viewModal.value = false;
     }
 
     /********** For development **********/
@@ -204,6 +189,8 @@ export default {
       viewAll,
       viewModal,
       showModal,
+      closeModal,
+      text,
     };
   },
 };
