@@ -24,6 +24,14 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  tasks: {
+    type: Array,
+    default: () => [],
+    required: true,
+  },
+});
+
 const emit = defineEmits(["on-zoho-text", "on-pr-text"]);
 
 function onZohoText() {
