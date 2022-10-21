@@ -19,8 +19,7 @@
     "electron-store": "^8.1.0",
     "moment": "^2.29.4",
     "vue": "^3.2.13",
-    "vue-final-modal": "^3.4.4",
-    "vue-router": "4"
+    "vue-final-modal": "^3.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
