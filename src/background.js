@@ -18,6 +18,8 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 850,
+    title: "Zoho Tasker",
+    icon: "./public/zoho_tasker.png",
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info

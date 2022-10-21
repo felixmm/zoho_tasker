@@ -4,20 +4,22 @@
       <button
         type="button"
         title="Zoho Text"
-        class="btn py-4"
+        class="btn py-4 action-btn"
         @click="onZohoText"
       >
-        <i class="fa-solid fa-file-lines action-btn font-30" />
+        <i class="fa-solid fa-file-lines font-30" />
+        <label class="white">Zoho</label>
       </button>
     </div>
     <div class="col-12">
       <button
         type="button"
         title="Pull Request Text"
-        class="btn py-4"
+        class="btn py-4 action-btn"
         @click="onPrText"
       >
-        <i class="fa-solid fa-code action-btn font-30" />
+        <i class="fa-solid fa-code font-30" />
+        <label class="white">Pull Request</label>
       </button>
     </div>
   </div>

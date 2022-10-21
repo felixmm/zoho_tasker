@@ -109,11 +109,11 @@ html, body, #app {
 }
 
 .action-btn, .action-btn:visited {
-    color: var(--white);
+    color: var(--white) !important;
 }
 
 .action-btn:hover {
-    color: var(--grey);
+    color: var(--grey) !important;
 }
 
 .border-right {
