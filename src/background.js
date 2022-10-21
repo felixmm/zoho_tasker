@@ -28,11 +28,13 @@ async function createWindow() {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
+    console.info('Loading dev server url');
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     // if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol("app");
     // Load the index.html when not in development
+    console.info('Loading index.html for production');
     win.loadURL("app://./index.html");
   }
 }
@@ -64,6 +66,7 @@ app.on("ready", async () => {
       console.error("Vue Devtools failed to install:", e.toString());
     }
   }
+  console.info("Electron initialized. Creating window ...");
   createWindow();
 });
 
