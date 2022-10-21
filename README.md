@@ -1,24 +1,17 @@
-# zoho_tasker
+# <img src="public/zoho_tasker.png" alt="Zoho Tasker" height="26" /> Zoho Tasker
 
-## Project setup
-```
-yarn install
-```
+Desktop app build with Vue 3 and Electron, to facilitate the time tracking of User Stories, and text generation. Intended for Quisit development model.
 
-### Compiles and hot-reloads for development
+## To run the application run
 ```
-yarn serve
+yarn add
 ```
-
-### Compiles and minifies for production
+then
 ```
-yarn build
+yarn electron:serve
 ```
 
-### Lints and fixes files
+## To compile for production run
 ```
-yarn lint
+yarn electron:build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

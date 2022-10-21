@@ -11,6 +11,9 @@ import { vfmPlugin } from 'vue-final-modal';
 
 const app = createApp(App);
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+app.provide('isDevelopment', isDevelopment);
+
 // Plugins
 app.use(vfmPlugin);
 

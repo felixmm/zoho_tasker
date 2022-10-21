@@ -66,7 +66,7 @@
       />
 
       <!-- Dev buttons -->
-      <div class="fixed-bottom">
+      <div v-if="isDevelopment" class="fixed-bottom">
         <button @click="clear()">Clear All</button>
         <button @click="viewAll()">View All</button>
       </div>
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, inject } from "vue";
 import moment from "moment";
 import DatePicker from "@/components/DatePicker.vue";
 import TaskItem from "@/components/TaskItem.vue";
@@ -177,6 +177,8 @@ export default {
 
     /********** For development **********/
 
+    const isDevelopment = inject("isDevelopment");
+
     function clear() {
       clearAll();
       checkWorkDay();
@@ -200,12 +202,13 @@ export default {
       hideAddTask,
       saveItem,
       deleteItem,
-      clear,
-      viewAll,
       viewModal,
       showModal,
       closeModal,
       textList,
+      isDevelopment,
+      clear,
+      viewAll,
     };
   },
 };
