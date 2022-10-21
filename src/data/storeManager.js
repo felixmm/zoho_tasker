@@ -1,6 +1,8 @@
 import Store from "electron-store";
 
-const _store = new Store();
+const storeName = process.env.NODE_ENV !== "production" ? "zohotasker_db_dev" : "zohotasker_db";
+
+const _store = new Store({ name: storeName });
 
 export const getWorkDay = (dateKey) => _store.get(dateKey);
 
