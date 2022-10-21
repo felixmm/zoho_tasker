@@ -9,16 +9,21 @@
     </div>
     <vue-final-modal
       v-model="viewModal"
-      class="w-75 h-75 m-auto"
+      class="w-75 h-75 m-auto modal-wrap"
       :click-to-close="false"
     >
-      <div class="text-end">
+      <div class="position-sticky top-0 end-0 text-end">
         <button type="button" class="btn" @click="closeModal">
           <i class="fa-solid fa-circle-xmark del-btn font-26" />
         </button>
       </div>
       <div class="px-4">
-        <div class="p-3 modal-text" v-html="text"></div>
+        <div
+          v-for="(text, index) in textList"
+          :key="index"
+          class="p-3 modal-text"
+          v-html="text"
+        ></div>
       </div>
     </vue-final-modal>
     <div class="col-11">
@@ -158,15 +163,15 @@ export default {
 
     // Modal
     const viewModal = ref(false);
-    const text = ref("");
+    const textList = ref([]);
 
     function showModal(value) {
-      text.value = value;
+      textList.value = value;
       viewModal.value = true;
     }
 
     function closeModal() {
-      text.value = "";
+      textList.value = [];
       viewModal.value = false;
     }
 
@@ -200,7 +205,7 @@ export default {
       viewModal,
       showModal,
       closeModal,
-      text,
+      textList,
     };
   },
 };
@@ -213,6 +218,11 @@ export default {
   bottom: 15px;
   left: 0;
   z-index: 1030;
+}
+
+.modal-wrap {
+  height: 75%;
+  overflow-y: scroll;
 }
 
 .modal-text {
