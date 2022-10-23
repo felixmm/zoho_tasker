@@ -21,5 +21,13 @@ jobs:
       - name: Upload setup file
         uses: actions/upload-artifact@v3
         with:
-          name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
+          name: zohotasker-setup
           path: dist_electron/*.exe
+      - name: Create release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.PACKAGE_VERSION }}
+          release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
