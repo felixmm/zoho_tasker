@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - 'release'
-    filter: 'package.json'
+    # filter: 'package.json'
 jobs:
   build-win:
     name: Build Windows Installer
@@ -22,22 +22,31 @@ jobs:
       - name: Upload setup file
         uses: actions/upload-artifact@v3
         with:
-          name: zohotasker-win-setup
+          name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
           path: dist_electron/*.exe
-      - name: Create release
-        id: create-new-release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.PACKAGE_VERSION }}
-          release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
-      - name: Upload release assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-          asset_path: ./zohotasker-win-setup
-          asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
-          asset_content_type: application/zip
+  create-release:
+    name: Create release
+    runs-on: windows-latest
+    needs: build-win
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+      - name: Display structure of downloaded files
+        run: ls -R
+      # - name: Create release
+      #   id: create-new-release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v${{ env.PACKAGE_VERSION }}
+      #     release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
+      # - name: Upload release assets
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+      #     asset_path: ./zohotasker-win-setup
+      #     asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
+      #     asset_content_type: application/zip
