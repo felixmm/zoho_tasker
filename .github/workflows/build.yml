@@ -33,6 +33,21 @@ jobs:
         uses: actions/download-artifact@v3
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Set variables
+        id: variables
+        run: |
+          $folder = Get-ChildItem
+          $setup = Get-ChildItem -Path $folder
+          $split = $folder -split "-"
+          $version = $split[1]
+          echo "::set-output name=folder::$folder"
+          echo "::set-output name=setup::$setup"
+          echo "::set-output name=version::$version"
+      - name: Reading Variables
+        run: |
+          ${{ steps.variables.outputs.folder }}
+          ${{ steps.variables.outputs.setup }}
+          ${{ steps.variables.outputs.version }}
       # - name: Create release
       #   id: create-new-release
       #   uses: actions/create-release@v1
