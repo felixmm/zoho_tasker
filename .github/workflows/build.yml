@@ -13,4 +13,6 @@ jobs:
       - name: Install packages
         run: npm install
       - name: Build electron
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: npm run electron:build
