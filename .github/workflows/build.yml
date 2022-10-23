@@ -21,7 +21,7 @@ jobs:
       - name: Upload setup file
         uses: actions/upload-artifact@v3
         with:
-          name: zohotasker-setup
+          name: zohotasker-win-setup
           path: dist_electron/*.exe
       - name: Create release
         id: create-new-release
@@ -31,3 +31,11 @@ jobs:
         with:
           tag_name: v${{ env.PACKAGE_VERSION }}
           release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with: upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./zohotasker-win-setup
+        asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
+        asset_content_type: application/zip
