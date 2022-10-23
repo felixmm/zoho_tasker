@@ -3,27 +3,43 @@ on:
   push:
     branches:
       - 'release'
-    # filter: 'package.json'
+    filter: 'package.json'
 jobs:
   build-win:
     name: Build Windows Installer
     runs-on: windows-latest
+    outputs:
+      artifactName: ${{ steps.artifact.outputs.artifactName }}
+      versionNumber: ${{ steps.version.outputs.versionNumber }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Install packages
         run: npm install
+
       - name: Read current version
         uses: nyaa8/package-version@v1
+
       - name: Build electron
         run: npm run electron:build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload setup file
         uses: actions/upload-artifact@v3
         with:
-          name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
+          name: zohotasker-win-setup
           path: dist_electron/*.exe
+
+      - name: Set artifact name output
+        id: artifact
+        run: echo "artifactName=zohotasker-win-setup" >> $GITHUB_OUTPUT
+
+      - name: Set version output
+        id: version
+        run: echo "versionNumber=${{ env.PACKAGE_VERSION }}" >> $GITHUB_OUTPUT
+
   create-release:
     name: Create release
     runs-on: windows-latest
@@ -31,37 +47,24 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: Set variables
-        id: variables
-        run: |
-          $folder = Get-ChildItem
-          $setup = Get-ChildItem -Path $folder
-          $split = $folder -split "-"
-          $version = $split[1]
-          echo "::set-output name=folder::$folder"
-          echo "::set-output name=setup::$setup"
-          echo "::set-output name=version::$version"
-      - name: Reading Variables
-        run: |
-          ${{ steps.variables.outputs.folder }}
-          ${{ steps.variables.outputs.setup }}
-          ${{ steps.variables.outputs.version }}
-      # - name: Create release
-      #   id: create-new-release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v${{ env.PACKAGE_VERSION }}
-      #     release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
-      # - name: Upload release assets
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-      #     asset_path: ./zohotasker-win-setup
-      #     asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
-      #     asset_content_type: application/zip
+        with:
+          name: ${{ needs.build-win.outputs.artifactName }}
+      
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.build-win.outputs.versionNumber }}
+          release_name: Zoho Tasker v${{ needs.build-win.outputs.versionNumber }}
+
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./${{ needs.build-win.outputs.artifactName }}
+          asset_name: zohotasker-v${{ needs.build-win.outputs.versionNumber }}-win-setup
+          asset_content_type: application/zip
