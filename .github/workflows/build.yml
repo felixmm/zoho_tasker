@@ -35,7 +35,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with: upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: ./zohotasker-win-setup
-        asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
-        asset_content_type: application/zip
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./zohotasker-win-setup
+          asset_name: zohotasker-v${{ env.PACKAGE_VERSION }}-win-setup
+          asset_content_type: application/zip
