@@ -1,0 +1,16 @@
+name: Zoho Tasker release builder
+on:
+  push:
+    branches:
+      - 'release'
+jobs:
+  build-app:
+    name: Checkout and build electron app
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install packages
+        run: npm install
+      - name: Build electron
+        run: npm run electron:build
