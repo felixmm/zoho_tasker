@@ -31,7 +31,7 @@ jobs:
         with:
           tag_name: v${{ env.PACKAGE_VERSION }}
           release_name: Zoho Tasker v${{ env.PACKAGE_VERSION }}
-          allowUpdates: true
+          allow_updates: true
       - name: Upload release assets
         uses: actions/upload-release-asset@v1
         env:
