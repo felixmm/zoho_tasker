@@ -5,7 +5,7 @@ on:
       - 'release'
 jobs:
   build-app:
-    name: Checkout and build electron app
+    name: Checkout and build
     runs-on: windows-latest
     steps:
       - name: Checkout code
@@ -16,3 +16,8 @@ jobs:
         run: npm run electron:build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload setup file
+        uses: actions/upload-artifact@v3
+        with:
+          name: zoho-tasker-setup
+          path: dist_electron/*.exe
