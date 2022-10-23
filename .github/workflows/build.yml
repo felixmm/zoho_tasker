@@ -4,14 +4,16 @@ on:
     branches:
       - 'release'
 jobs:
-  build-app:
-    name: Checkout and build
+  build-win:
+    name: Build Windows Installer
     runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install packages
         run: npm install
+      - name: Read current version
+        uses: martinbeentjes/npm-get-version-action@main
       - name: Build electron
         run: npm run electron:build
         env:
@@ -19,5 +21,5 @@ jobs:
       - name: Upload setup file
         uses: actions/upload-artifact@v3
         with:
-          name: zoho-tasker-setup
+          name: zohotasker-v${{ steps.package-version.outputs.current-version }}-win-setup
           path: dist_electron/*.exe
