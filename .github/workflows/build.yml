@@ -43,7 +43,7 @@ jobs:
   createRelease:
     name: Create release
     runs-on: windows-latest
-    needs: build-win
+    needs: buildWin
     steps:
       - name: Reading variables
         run: |
