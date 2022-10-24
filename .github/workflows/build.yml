@@ -15,14 +15,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install packages
-        run: npm install
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-      - name: Read current version
-        uses: nyaa8/package-version@v1
+      - name: Install packages
+        run: yarn install
+
+      # - name: Read current version
+      #   uses: nyaa8/package-version@v1
 
       - name: Build electron
-        run: npm run electron:build
+        run: yarn release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
