@@ -5,7 +5,6 @@ module.exports = {
       nodeIntegration: true,
       builderOptions: {
         productName: "Zoho Tasker",
-        publish: "always",
         win: {
           icon: "./public/zoho_tasker.png"
         },
