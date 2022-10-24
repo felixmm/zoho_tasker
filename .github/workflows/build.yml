@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - 'release'
-    # filter: 'package.json'
+    tags:
+      - v*
 jobs:
   build-win:
     name: Build Windows Installer
