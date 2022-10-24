@@ -1,8 +1,6 @@
 name: Zoho Tasker release builder
 on:
   push:
-    branches:
-      - 'release'
     tags:
       - v*
 jobs:
@@ -32,34 +30,26 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Upload setup file
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: zohotasker-win-setup
-      #     path: dist_electron/*.exe
+      - name: Upload setup file
+        uses: actions/upload-artifact@v3
+        with:
+          name: zohotasker-win-setup
+          path: dist_electron/*.exe
 
-  #     - name: Set artifact name output
-  #       id: artifact
-  #       run: echo "artifactName=zohotasker-win-setup" >> $GITHUB_OUTPUT
-
-  #     - name: Set version output
-  #       id: version
-  #       run: echo "versionNumber=${{ env.PACKAGE_VERSION }}" >> $GITHUB_OUTPUT
-
-  # create-release:
-  #   name: Create release
-  #   runs-on: windows-latest
-  #   needs: build-win
-  #   steps:
-  #     - name: Reading variables
-  #       run: |
-  #         echo ${{ needs.build-win.outputs.artifactName }}
-  #         echo ${{ needs.build-win.outputs.versionNumber }}
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: ${{ needs.build-win.outputs.artifactName }}
+  create-release:
+    name: Create release
+    runs-on: windows-latest
+    needs: build-win
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: zohotasker-win-setup
       
+      - name: GitHub Tags
+        run: |
+          echo "GitHub tag/ref name: ${{ github.ref_name }}"
+
       # - name: Create release
       #   id: create-release
       #   uses: actions/create-release@v1
