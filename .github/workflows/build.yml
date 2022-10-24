@@ -20,27 +20,16 @@ jobs:
         with:
           node-version: 16
 
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1.6.0
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
-
-      # - name: Install packages
-      #   run: yarn install
+      - name: Install packages
+        run: yarn install
 
       # - name: Read current version
       #   uses: nyaa8/package-version@v1
 
-      # - name: Build electron
-      #   run: yarn electron:build
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build electron
+        run: yarn electron:build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Upload setup file
       #   uses: actions/upload-artifact@v3
