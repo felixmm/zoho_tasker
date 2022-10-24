@@ -7,7 +7,10 @@ module.exports = {
         productName: "Zoho Tasker",
         win: {
           icon: "./public/zoho_tasker.png"
-        }
+        },
+        linux: {
+          icon: "./public/zoho_tasker.png"
+        },
       }
     }
   }
