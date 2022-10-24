@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - 'release'
+    tags:
+      - v*
     # filter: 'package.json'
 jobs:
   build-win:
@@ -15,7 +17,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node v16 environment
+        uses: actions/setup-node@v3
         with:
           node-version: 16
 
@@ -29,9 +32,6 @@ jobs:
         run: yarn electron:build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create release
-        run: yarn release
 
       # - name: Upload setup file
       #   uses: actions/upload-artifact@v3
