@@ -7,9 +7,6 @@ jobs:
   build-win:
     name: Build Windows Installer
     runs-on: windows-latest
-    outputs:
-      artifactName: ${{ steps.artifact.outputs.artifactName }}
-      versionNumber: ${{ steps.version.outputs.versionNumber }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,46 +19,7 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      - name: Build electron
+      - name: Build and create release
         run: yarn electron:publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload setup file
-        uses: actions/upload-artifact@v3
-        with:
-          name: zohotasker-win-setup
-          path: dist_electron/*.exe
-
-  create-release:
-    name: Create release
-    runs-on: windows-latest
-    needs: build-win
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: zohotasker-win-setup
-      
-      - name: GitHub Tags
-        run: |
-          echo "GitHub tag/ref name: ${{ github.ref_name }}"
-
-      # - name: Create release
-      #   id: create-release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v${{ needs.build-win.outputs.versionNumber }}
-      #     release_name: Zoho Tasker v${{ needs.build-win.outputs.versionNumber }}
-
-      # - name: Upload release assets
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create-release.outputs.upload_url }}
-      #     asset_path: ./${{ needs.build-win.outputs.artifactName }}
-      #     asset_name: zohotasker-v${{ needs.build-win.outputs.versionNumber }}-win-setup
-      #     asset_content_type: application/zip
