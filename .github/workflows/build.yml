@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - 'release'
-    filter: 'package.json'
+    # filter: 'package.json'
 jobs:
   build-win:
     name: Build Windows Installer
@@ -26,9 +26,12 @@ jobs:
       #   uses: nyaa8/package-version@v1
 
       - name: Build electron
-        run: yarn release
+        run: yarn electron:build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        run: yarn release
 
       # - name: Upload setup file
       #   uses: actions/upload-artifact@v3
