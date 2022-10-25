@@ -30,12 +30,14 @@
         />
       </div>
       <div class="col-1 text-center">
-        <button type="button" class="col-6 btn" @click="onSave()">
-          <i class="fa-solid fa-circle-plus plus-btn font-26" />
-        </button>
-        <button type="button" class="col-6 btn" @click="onCancel()">
-          <i class="fa-solid fa-circle-xmark del-btn font-26" />
-        </button>
+        <div class="row">
+          <button type="button" class="col-6 btn" @click="onSave()">
+            <i class="fa-solid fa-circle-plus plus-btn font-26" />
+          </button>
+          <button type="button" class="col-6 btn" @click="onCancel()">
+            <i class="fa-solid fa-circle-xmark del-btn font-26" />
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -13,12 +13,14 @@
       <span class="white fw-bold">{{ props.item.time }}</span>
     </div>
     <div class="col-1 py-2 text-center border-right">
-      <button type="button" class="btn col-6" @click="onEdit">
-        <i class="fa-solid fa-pen-to-square edit-btn font-26"></i>
-      </button>
-      <button type="button" class="btn col-6" @click="onDelete">
-        <i class="fa-solid fa-circle-xmark del-btn font-26" />
-      </button>
+      <div class="row">
+        <button type="button" class="btn col-6" @click="onEdit">
+          <i class="fa-solid fa-pen-to-square edit-btn font-26"></i>
+        </button>
+        <button type="button" class="btn col-6" @click="onDelete">
+          <i class="fa-solid fa-circle-xmark del-btn font-26" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
