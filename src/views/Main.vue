@@ -1,6 +1,6 @@
 <template>
   <div class="row h-100">
-    <div class="col-1 border-right">
+    <div class="col-1 border-right black-bg">
       <action-menu
         :tasks="workDay.tasks"
         @on-zoho-text="showModal"
@@ -30,7 +30,18 @@
       <date-picker @on-date-change="onDateChange($event)" />
       <div>
         <!-- Headers -->
-        <div class="row font-24 text-center border-bottom white fw-bold py-3">
+        <div
+          class="
+            row
+            font-24
+            text-center
+            border-bottom
+            white
+            fw-bold
+            py-3
+            black-bg
+          "
+        >
           <div class="col-2">
             <label>US</label>
           </div>

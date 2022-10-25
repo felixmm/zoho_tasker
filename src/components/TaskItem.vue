@@ -12,9 +12,12 @@
     <div class="col-2 text-center py-2 border-right">
       <span class="white fw-bold">{{ props.item.time }}</span>
     </div>
-    <div class="col-1 py-2 text-center">
-      <button type="button" class="btn" @click="onDelete()">
-        <i class="fa-solid fa-circle-xmark del-btn font-30" />
+    <div class="col-1 py-2 text-center border-right">
+      <button type="button" class="btn col-6" @click="() => {}">
+        <i class="fa-solid fa-pen-to-square edit-btn font-26"></i>
+      </button>
+      <button type="button" class="btn col-6" @click="onDelete()">
+        <i class="fa-solid fa-circle-xmark del-btn font-26" />
       </button>
     </div>
   </div>

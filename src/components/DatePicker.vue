@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row black-bg">
     <div class="col-2 text-center p-4">
       <button type="button" class="btn" @click="prevDay">
         <i class="fa-solid fa-angles-left py-2 px-4 arrow-btn font-40" />

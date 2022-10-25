@@ -1,6 +1,7 @@
 :root {
     --bs-body-bg: #121212 !important;
     --bs-body-color: #bababa !important;
+    --black: #000000;
     --grey: #303030;
     --grey-light:#c1c1c1;
     --blue: #00a6f5;
@@ -20,6 +21,10 @@ html, body, #app {
 
 .white {
     color: var(--white);
+}
+
+.black-bg {
+    background-color: var(--black);
 }
 
 .grey {
@@ -114,6 +119,14 @@ html, body, #app {
 
 .action-btn:hover {
     color: var(--grey) !important;
+}
+
+.edit-btn, .edit-btn:visited {
+    color: var(--blue);
+}
+
+.edit-btn:hover {
+    color: var(--blue-light);
 }
 
 .border-right {
