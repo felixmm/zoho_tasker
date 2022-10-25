@@ -14,11 +14,14 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 async function createWindow() {
+  
   // Create the browser window.
+  let version = require("../package.json").version;
+
   const win = new BrowserWindow({
     width: 1200,
     height: 850,
-    title: "Zoho Tasker",
+    title: "Zoho Tasker - v" + version,
     icon: "./public/zoho_tasker.png",
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
