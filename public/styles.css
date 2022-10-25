@@ -129,6 +129,19 @@ html, body, #app {
     color: var(--blue-light);
 }
 
+.copy-clipboard-btn > i {
+    padding-right: 5px;
+}
+
+.copy-clipboard-btn, .copy-clipboard-btn:visited {
+    color: var(--white) !important;
+    background-color: var(--blue) !important;
+}
+
+.copy-clipboard-btn:hover {
+    background-color: var(--blue-light) !important;
+}
+
 .border-right {
     border-right: 1px solid;
 }

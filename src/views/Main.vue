@@ -22,8 +22,19 @@
           v-for="(text, index) in textList"
           :key="index"
           class="p-3 modal-text"
-          v-html="text"
-        ></div>
+        >
+          <div class="text-end">
+            <button
+              :id="'copy-clipboard-' + index"
+              class="btn copy-clipboard-btn"
+              @click="copyToClipboard(text, index)"
+            >
+              <i class="fa-regular fa-copy" />
+              <label>Copy to Clipboard</label>
+            </button>
+          </div>
+          <span v-html="text" />
+        </div>
       </div>
     </vue-final-modal>
     <div class="col-11">
@@ -196,6 +207,17 @@ export default {
       viewModal.value = false;
     }
 
+    function copyToClipboard(text, index) {
+      const button = document.getElementById("copy-clipboard-" + index);
+      button.children[1].innerHTML = "Copied!";
+      setTimeout(() => {
+        button.children[1].innerHTML = "Copy to Clipboard";
+      }, 1200);
+
+      const cleanText = text.replace(/(<([^>]+)>)/gi, "").trim();
+      navigator.clipboard.writeText(cleanText);
+    }
+
     /********** For development **********/
 
     const isDevelopment = inject("isDevelopment");
@@ -228,6 +250,7 @@ export default {
       viewModal,
       showModal,
       closeModal,
+      copyToClipboard,
       textList,
       isDevelopment,
       clear,

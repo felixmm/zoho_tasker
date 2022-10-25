@@ -71,7 +71,7 @@ function onZohoText() {
         time += t.time;
       });
       task += multipleTemplate.replace("{MULTIPLE_TASKS}", taskList);
-      task += `<br /> ${time} hours <br /> <hr />`;
+      task += `<br />${time} hours <br /> <hr />`;
     }
 
     text.push(task);
@@ -82,28 +82,28 @@ function onZohoText() {
 
 function onPrText() {
   const template = `Sesión de trabajo realizando la programación necesaria para cumplir
-  con el requerimiento asignado ejecutando las tareas #{US_NUMBER}
-  <br />
-  ###Related Issues<br />
-  #{US_NUMBER}<br />
-  {TASK_LIST}
-  <br />
-  ###Types of change<br />
-  [ ] Bug fix (non-breaking change which fixes an issue)<br />
-  [X] New feature (non-breaking change which adds functionality)<br />
-  [ ] Breaking change (fix or feature that would cause existing
-  functionality to change)<br />
-  <br />
-  ###Checklist<br />
-  [X] My code follows the code style of this project.<br />
-  [ ] My change requires a change to the documentation.<br />
-  [ ] I have updated the documentation accordingly.<br />
-  [ ] I have read the CONTRIBUTING document
-  (https://cdevteam.netlify.app/).<br />
-  [ ] I have added tests to cover my changes.<br />
-  [ ] All new and existing tests passed.<br />
-  <br />
-  <hr />`;
+con el requerimiento asignado ejecutando las tareas #{US_NUMBER}
+<br />
+###Related Issues<br />
+#{US_NUMBER}<br />
+{TASK_LIST}
+<br />
+###Types of change<br />
+[ ] Bug fix (non-breaking change which fixes an issue)<br />
+[X] New feature (non-breaking change which adds functionality)<br />
+[ ] Breaking change (fix or feature that would cause existing
+functionality to change)<br />
+<br />
+###Checklist<br />
+[X] My code follows the code style of this project.<br />
+[ ] My change requires a change to the documentation.<br />
+[ ] I have updated the documentation accordingly.<br />
+[ ] I have read the CONTRIBUTING document
+(https://cdevteam.netlify.app/).<br />
+[ ] I have added tests to cover my changes.<br />
+[ ] All new and existing tests passed.<br />
+<br />
+<hr />`;
 
   let text = [];
 
