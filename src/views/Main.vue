@@ -65,6 +65,7 @@
           v-for="task in workDay.tasks"
           :key="task.task"
           :item="task"
+          @on-edit="editItem($event)"
           @on-delete="deleteItem($event)"
         />
         <!-- Task List End -->
@@ -72,6 +73,7 @@
 
       <add-task-item
         v-if="viewAddTask"
+        :item="currentTask"
         @on-save="saveItem($event)"
         @on-cancel="hideAddTask()"
       />
@@ -84,7 +86,7 @@
       <!-- Dev buttons End-->
 
       <div v-if="!viewAddTask" class="position-fixed bottom-0 end-0 text-end">
-        <button type="button" class="btn" @click="showAddTask()">
+        <button type="button" class="btn" @click="addNewTask">
           <i class="fa-solid fa-circle-plus font-50 p-3 plus-btn" />
         </button>
       </div>
@@ -152,8 +154,10 @@ export default {
 
     // Tasks
     const viewAddTask = ref(false);
+    const currentTask = ref({});
 
-    function showAddTask() {
+    function addNewTask() {
+      currentTask.value = null;
       viewAddTask.value = true;
     }
 
@@ -165,6 +169,12 @@ export default {
       saveTask(dateKey.value, input);
       hideAddTask();
       checkWorkDay();
+    }
+
+    function editItem(input) {
+      deleteItem(input);
+      currentTask.value = input;
+      viewAddTask.value = true;
     }
 
     function deleteItem(input) {
@@ -209,9 +219,11 @@ export default {
       workDay,
       totalTime,
       viewAddTask,
-      showAddTask,
+      addNewTask,
       hideAddTask,
+      editItem,
       saveItem,
+      currentTask,
       deleteItem,
       viewModal,
       showModal,

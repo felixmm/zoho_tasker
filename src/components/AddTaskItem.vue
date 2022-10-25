@@ -44,9 +44,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const emit = defineEmits(["on-save", "on-cancel"]);
+
+const props = defineProps({
+  item: {
+    type: Object,
+    default: () => {},
+  },
+});
 
 const initModel = {
   us: null,
@@ -57,6 +64,12 @@ const initModel = {
 
 const model = ref({
   ...initModel,
+});
+
+onMounted(() => {
+  if (props.item) {
+    model.value = props.item;
+  }
 });
 
 function onSave() {
