@@ -33,9 +33,13 @@
               <label>Copy to Clipboard</label>
             </button>
           </div>
-          <span v-if="message.us" v-html="message.us" />
+          <span v-if="message.us" class="bold blue-us" v-html="message.us" />
           <span v-html="message.text" />
-          <span v-if="message.hours" v-html="message.hours" />
+          <span
+            v-if="message.hours"
+            class="bold yellow-us"
+            v-html="message.hours"
+          />
         </div>
       </div>
     </vue-final-modal>

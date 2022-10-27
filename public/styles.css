@@ -87,6 +87,10 @@ html, body, #app {
     font-size: 18px;
 }
 
+.bold {
+    font-weight: bold !important;
+}
+
 .plus-btn, .plus-btn:visited {
     color: var(--green);
 }
