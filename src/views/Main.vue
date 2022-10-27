@@ -19,7 +19,7 @@
       </div>
       <div class="px-4">
         <div
-          v-for="(text, index) in textList"
+          v-for="(message, index) in messageList"
           :key="index"
           class="p-3 modal-text"
         >
@@ -27,13 +27,15 @@
             <button
               :id="'copy-clipboard-' + index"
               class="btn copy-clipboard-btn"
-              @click="copyToClipboard(text, index)"
+              @click="copyToClipboard(message.text, index)"
             >
               <i class="fa-regular fa-copy" />
               <label>Copy to Clipboard</label>
             </button>
           </div>
-          <span v-html="text" />
+          <span v-if="message.us" v-html="message.us" />
+          <span v-html="message.text" />
+          <span v-if="message.hours" v-html="message.hours" />
         </div>
       </div>
     </vue-final-modal>
@@ -195,15 +197,15 @@ export default {
 
     // Modal
     const viewModal = ref(false);
-    const textList = ref([]);
+    const messageList = ref([]);
 
     function showModal(value) {
-      textList.value = value;
+      messageList.value = value;
       viewModal.value = true;
     }
 
     function closeModal() {
-      textList.value = [];
+      messageList.value = [];
       viewModal.value = false;
     }
 
@@ -251,7 +253,7 @@ export default {
       showModal,
       closeModal,
       copyToClipboard,
-      textList,
+      messageList,
       isDevelopment,
       clear,
       viewAll,

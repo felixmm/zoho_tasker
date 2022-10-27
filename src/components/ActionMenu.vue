@@ -50,17 +50,22 @@ function onZohoText() {
 
   const multipleTemplate = `Sesión de trabajo realizando la programación necesaria para cumplir con el requerimiento asignado ejecutando las tareas {MULTIPLE_TASKS}`;
 
-  let text = [];
+  let messages = [];
 
   for (const us in groupedTasks.value) {
-    let task = `US ${us} <br />`;
+    let message = {
+      us: null,
+      text: null,
+      hours: null,
+    };
+
+    message.us = `US ${us} <br />`;
     if (groupedTasks.value[us].length == 1) {
-      task += singleTemplate.replace(
+      message.text = singleTemplate.replace(
         "{SINGLE_TASK}",
-        `${groupedTasks.value[us][0].task} ${groupedTasks.value[us][0].title}
-        <br />
-        ${groupedTasks.value[us][0].time} hours <br /> <hr />`
+        `${groupedTasks.value[us][0].task} ${groupedTasks.value[us][0].title}`
       );
+      message.hours = `<br /> ${groupedTasks.value[us][0].time} hours <br /> <hr />`;
     } else {
       let taskList = "";
       let time = 0;
@@ -70,14 +75,15 @@ function onZohoText() {
           (i + 1 == groupedTasks.value[us].length ? "." : ", ");
         time += t.time;
       });
-      task += multipleTemplate.replace("{MULTIPLE_TASKS}", taskList);
-      task += `<br />${time} hours <br /> <hr />`;
-    }
+      message.text = multipleTemplate.replace("{MULTIPLE_TASKS}", taskList);
 
-    text.push(task);
+      message.hours = `<br />${time} hours <br /> <hr />`;
+    }
+    console.log(message);
+    messages.push(message);
   }
 
-  emit("on-zoho-text", text);
+  emit("on-zoho-text", messages);
 }
 
 function onPrText() {
@@ -105,7 +111,7 @@ functionality to change)<br />
 <br />
 <hr />`;
 
-  let text = [];
+  let messages = [];
 
   for (const us in groupedTasks.value) {
     let taskList = "";
@@ -113,11 +119,13 @@ functionality to change)<br />
       (t) => (taskList += "#" + t.task + "<br />")
     );
 
-    text.push(
-      template.replaceAll("{US_NUMBER}", us).replace("{TASK_LIST}", taskList)
-    );
+    messages.push({
+      text: template
+        .replaceAll("{US_NUMBER}", us)
+        .replace("{TASK_LIST}", taskList),
+    });
   }
 
-  emit("on-pr-text", text);
+  emit("on-pr-text", messages);
 }
 </script>
