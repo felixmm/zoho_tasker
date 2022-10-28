@@ -7,7 +7,7 @@
         class="btn py-4 action-btn"
         @click="onZohoText"
       >
-        <i class="fa-solid fa-file-lines font-30" />
+        <i class="fa-solid fa-file-lines font-26" />
         <label class="white">Zoho</label>
       </button>
     </div>
@@ -15,11 +15,22 @@
       <button
         type="button"
         title="Pull Request Text"
-        class="btn py-4 action-btn"
+        class="btn py-4 px-0 action-btn"
         @click="onPrText"
       >
-        <i class="fa-solid fa-code font-30" />
+        <i class="fa-solid fa-code font-26" />
         <label class="white">Pull Request</label>
+      </button>
+    </div>
+    <div class="col-12">
+      <button
+        type="button"
+        title="Comments"
+        class="btn py-4 px-0 action-btn"
+        @click="onComment"
+      >
+        <i class="fa-solid fa-message font-26" />
+        <label class="white">Comments</label>
       </button>
     </div>
   </div>
@@ -43,7 +54,7 @@ const groupedTasks = computed(() => {
   }, {});
 });
 
-const emit = defineEmits(["on-zoho-text", "on-pr-text"]);
+const emit = defineEmits(["on-zoho-text", "on-pr-text", "on-comment"]);
 
 function onZohoText() {
   const singleTemplate = `Sesión de trabajo realizando la programación necesaria para cumplir con el requerimiento asignado ejecutando la tarea {SINGLE_TASK}`;
@@ -79,7 +90,6 @@ function onZohoText() {
 
       message.hours = `<br />${time} hours <br /> <hr />`;
     }
-    console.log(message);
     messages.push(message);
   }
 
@@ -127,5 +137,9 @@ functionality to change)<br />
   }
 
   emit("on-pr-text", messages);
+}
+
+function onComment() {
+  emit("on-comment");
 }
 </script>

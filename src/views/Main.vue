@@ -7,42 +7,11 @@
         @on-pr-text="showModal"
       />
     </div>
-    <vue-final-modal
+    <display-text-modal
       v-model="viewModal"
-      class="w-75 h-75 m-auto modal-wrap"
-      :click-to-close="false"
-    >
-      <div class="position-sticky top-0 end-0 text-end">
-        <button type="button" class="btn" @click="closeModal">
-          <i class="fa-solid fa-circle-xmark del-btn font-26" />
-        </button>
-      </div>
-      <div class="px-4">
-        <div
-          v-for="(message, index) in messageList"
-          :key="index"
-          class="p-3 modal-text"
-        >
-          <div class="text-end">
-            <button
-              :id="'copy-clipboard-' + index"
-              class="btn copy-clipboard-btn"
-              @click="copyToClipboard(message.text, index)"
-            >
-              <i class="fa-regular fa-copy" />
-              <label>Copy to Clipboard</label>
-            </button>
-          </div>
-          <span v-if="message.us" class="bold blue-us" v-html="message.us" />
-          <span v-html="message.text" />
-          <span
-            v-if="message.hours"
-            class="bold yellow-us"
-            v-html="message.hours"
-          />
-        </div>
-      </div>
-    </vue-final-modal>
+      :messages="messageList"
+      @on-close="closeModal"
+    />
     <div class="col-11">
       <date-picker @on-date-change="onDateChange($event)" />
       <div>
@@ -118,6 +87,7 @@ import DatePicker from "@/components/DatePicker.vue";
 import TaskItem from "@/components/TaskItem.vue";
 import AddTaskItem from "@/components/AddTaskItem.vue";
 import ActionMenu from "@/components/ActionMenu.vue";
+import DisplayTextModal from "@/components/DisplayTextModal.vue";
 
 import {
   getWorkDay,
@@ -136,6 +106,7 @@ export default {
     TaskItem,
     AddTaskItem,
     ActionMenu,
+    DisplayTextModal,
   },
   setup() {
     const workDay = ref({
