@@ -24,6 +24,13 @@ export const deleteTask = (dateKey, task) => {
     _store.set(workDay.dateKey, workDay);
 }
 
+export const addComment = (dateKey, comment) => {
+    const workDay = _store.get(dateKey);
+
+    workDay.comment = comment;
+    _store.set(workDay.dateKey, workDay);
+}
+
 export const clearAll = () => _store.clear();
 
 export const getAll = () => _store.get();

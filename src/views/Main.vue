@@ -3,14 +3,21 @@
     <div class="col-1 border-right black-bg">
       <action-menu
         :tasks="workDay.tasks"
-        @on-zoho-text="showModal"
-        @on-pr-text="showModal"
+        @on-zoho-text="showTextModal"
+        @on-pr-text="showTextModal"
+        @on-comment="showCommentModal"
       />
     </div>
     <display-text-modal
-      v-model="viewModal"
+      v-model="viewTextModal"
       :messages="messageList"
-      @on-close="closeModal"
+      @on-close="closeTextModal"
+    />
+    <comment-modal
+      v-model="viewCommentModal"
+      :comment="workDay.comment"
+      @on-add-comment="addWorkDayComment"
+      @on-close="closeCommentModal"
     />
     <div class="col-11">
       <date-picker @on-date-change="onDateChange($event)" />
@@ -88,6 +95,7 @@ import TaskItem from "@/components/TaskItem.vue";
 import AddTaskItem from "@/components/AddTaskItem.vue";
 import ActionMenu from "@/components/ActionMenu.vue";
 import DisplayTextModal from "@/components/DisplayTextModal.vue";
+import CommentModal from "@/components/CommentModal.vue";
 
 import {
   getWorkDay,
@@ -95,6 +103,7 @@ import {
   dateKeyExists,
   saveTask,
   deleteTask,
+  addComment,
   clearAll,
   getAll,
 } from "@/data/storeManager";
@@ -107,11 +116,13 @@ export default {
     AddTaskItem,
     ActionMenu,
     DisplayTextModal,
+    CommentModal,
   },
   setup() {
     const workDay = ref({
       dateKey: "",
       tasks: [],
+      comment: "",
     });
 
     // Date
@@ -121,6 +132,7 @@ export default {
         const currentDay = {
           dateKey: dateKey.value,
           tasks: [],
+          comment: "",
         };
         setWorkDay(currentDay);
       }
@@ -170,29 +182,33 @@ export default {
       checkWorkDay();
     }
 
-    // Modal
-    const viewModal = ref(false);
+    // Modals
+    const viewTextModal = ref(false);
+    const viewCommentModal = ref(false);
     const messageList = ref([]);
 
-    function showModal(value) {
+    function showTextModal(value) {
       messageList.value = value;
-      viewModal.value = true;
+      viewTextModal.value = true;
     }
 
-    function closeModal() {
+    function closeTextModal() {
       messageList.value = [];
-      viewModal.value = false;
+      viewTextModal.value = false;
     }
 
-    function copyToClipboard(text, index) {
-      const button = document.getElementById("copy-clipboard-" + index);
-      button.children[1].innerHTML = "Copied!";
-      setTimeout(() => {
-        button.children[1].innerHTML = "Copy to Clipboard";
-      }, 1200);
+    function showCommentModal() {
+      viewCommentModal.value = true;
+    }
 
-      const cleanText = text.replace(/(<([^>]+)>)/gi, "").trim();
-      navigator.clipboard.writeText(cleanText);
+    function closeCommentModal() {
+      viewCommentModal.value = false;
+    }
+
+    function addWorkDayComment(comment) {
+      addComment(dateKey.value, comment);
+      closeCommentModal();
+      checkWorkDay();
     }
 
     /********** For development **********/
@@ -214,9 +230,14 @@ export default {
     onMounted(() => checkWorkDay());
 
     return {
-      onDateChange,
+      // Main Model
       workDay,
+
+      // Date and Time
+      onDateChange,
       totalTime,
+
+      // Tasks
       viewAddTask,
       addNewTask,
       hideAddTask,
@@ -224,11 +245,20 @@ export default {
       saveItem,
       currentTask,
       deleteItem,
-      viewModal,
-      showModal,
-      closeModal,
-      copyToClipboard,
+
+      // Text Modal
+      viewTextModal,
+      showTextModal,
+      closeTextModal,
       messageList,
+
+      // Comment Modal
+      viewCommentModal,
+      showCommentModal,
+      closeCommentModal,
+      addWorkDayComment,
+
+      // Development
       isDevelopment,
       clear,
       viewAll,
