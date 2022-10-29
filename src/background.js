@@ -31,8 +31,10 @@ async function createWindow() {
     },
   });
 
-  // Removing default menu
-  Menu.setApplicationMenu(null);
+  if (!isDevelopment) {
+    // Removing default menu for Production
+    Menu.setApplicationMenu(null);
+  }
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
