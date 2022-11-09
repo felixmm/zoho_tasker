@@ -126,7 +126,7 @@ functionality to change)<br />
   for (const us in groupedTasks.value) {
     let taskList = "";
     groupedTasks.value[us].forEach(
-      (t) => (taskList += "#" + t.task + "<br />")
+      (t) => (taskList += "#" + t.task + "<br />\n")
     );
 
     messages.push({
