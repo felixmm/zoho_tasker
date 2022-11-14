@@ -2,7 +2,7 @@
 
 Desktop app build with Vue 3 and Electron, to facilitate the time tracking of User Stories and text generation. Intended for Quisit development model.
 
-## To run the application run
+## To run the application
 Install dependencies
 ```
 yarn install
